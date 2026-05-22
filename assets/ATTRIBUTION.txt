@@ -1,0 +1,15 @@
+Asset usati nel sito
+
+1. Efron_dice.svg
+Fonte: Wikimedia Commons
+URL: https://commons.wikimedia.org/wiki/File:Efron_dice.svg
+Autore indicato su Commons: Booyabazooka / GateKeeperX
+Licenza indicata: pubblico dominio
+
+2. Set_of_playing_cards_52.JPG
+Fonte: Wikimedia Commons
+URL: https://commons.wikimedia.org/wiki/File:Set_of_playing_cards_52.JPG
+Autore indicato su Commons: 17177 / Mysid
+Licenze indicate: GFDL e Creative Commons Attribution-ShareAlike
+
+Le altre visualizzazioni del sito sono costruite con HTML/CSS/JavaScript locali.

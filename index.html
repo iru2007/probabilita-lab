@@ -1,0 +1,451 @@
+<!doctype html>
+<html lang="it">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Probabilità Lab | Presentazione interattiva</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="progress" id="progressBar"></div>
+
+    <header class="topbar">
+      <a class="brand" href="#intro" aria-label="Torna all'inizio">
+        <span class="brand-mark">Ω</span>
+        <span>Probabilità Lab</span>
+      </a>
+      <nav class="nav" aria-label="Sezioni della presentazione">
+        <a href="#campionario">Eventi</a>
+        <a href="#classica">Classica</a>
+        <a href="#operazioni">Operazioni</a>
+        <a href="#condizionata">Condizionata</a>
+        <a href="#bayes">Bayes</a>
+        <a href="#bernoulli">Bernoulli</a>
+        <a href="#quiz">Quiz</a>
+      </nav>
+      <div class="top-actions">
+        <button class="icon-button" id="prevSection" aria-label="Sezione precedente" title="Sezione precedente">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15.5 5 8.5 12l7 7" /></svg>
+        </button>
+        <button class="icon-button" id="nextSection" aria-label="Sezione successiva" title="Sezione successiva">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m8.5 5 7 7-7 7" /></svg>
+        </button>
+        <button class="action-button" id="presentButton">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16v11H4z" /><path d="M8 21h8" /><path d="M12 16v5" /></svg>
+          Presenta
+        </button>
+      </div>
+    </header>
+
+    <main>
+      <section class="section intro-band" id="intro">
+        <div class="section-inner intro-layout">
+          <div class="intro-copy">
+            <p class="eyebrow">Capitolo 1</p>
+            <h1>La probabilità e le sue operazioni</h1>
+            <p class="lead">
+              Una presentazione interattiva per spiegare spazio campionario, eventi, somma logica,
+              probabilità condizionata, Bayes e Bernoulli con esempi dal tuo testo.
+            </p>
+            <div class="hero-actions">
+              <a class="primary-link" href="#campionario">Inizia dagli eventi</a>
+              <a class="secondary-link" href="#quiz">Vai al quiz finale</a>
+            </div>
+          </div>
+          <div class="hero-visual" aria-label="Visuale su dado e formule">
+            <img src="assets/dice.svg" alt="Quattro dadi colorati" />
+            <div class="hero-equation">
+              <span>P(E)</span>
+              <strong>= casi favorevoli / casi totali</strong>
+            </div>
+          </div>
+        </div>
+        <div class="section-inner formula-strip" aria-label="Formule fondamentali">
+          <article>
+            <span>Evento contrario</span>
+            <strong>P(E&#772;) = 1 - P(E)</strong>
+          </article>
+          <article>
+            <span>Somma logica</span>
+            <strong>P(A ∪ B) = P(A) + P(B) - P(A ∩ B)</strong>
+          </article>
+          <article>
+            <span>Condizionata</span>
+            <strong>P(A | B) = P(A ∩ B) / P(B)</strong>
+          </article>
+          <article>
+            <span>Bayes</span>
+            <strong>P(C | E) = P(C)P(E | C) / P(E)</strong>
+          </article>
+        </div>
+      </section>
+
+      <section class="section pale-green" id="campionario">
+        <div class="section-inner two-column">
+          <div>
+            <p class="eyebrow">1. Spazio campionario Ω</p>
+            <h2>Un evento è un sottoinsieme di tutti gli esiti possibili</h2>
+            <p>
+              Lo spazio campionario contiene tutti i risultati che possono uscire da un esperimento
+              aleatorio. Un evento è una parte di quello spazio: se lanci un dado, l'evento
+              "numero pari" è l'insieme {2, 4, 6}.
+            </p>
+            <div class="definition-list">
+              <div><b>Ω</b><span>insieme universo degli esiti</span></div>
+              <div><b>∅</b><span>evento impossibile</span></div>
+              <div><b>A ⊆ Ω</b><span>evento come sottoinsieme</span></div>
+            </div>
+          </div>
+          <div class="panel">
+            <div class="panel-header">
+              <h3>Lancio del dado</h3>
+              <button class="small-button" id="rollDie">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 7.5 12 3l9 4.5v9L12 21l-9-4.5z" /><path d="M12 12 3 7.5" /><path d="M12 12l9-4.5" /><path d="M12 12v9" /></svg>
+                Lancia
+              </button>
+            </div>
+            <div class="die-demo">
+              <div class="die-face" id="dieFace" aria-live="polite"></div>
+              <div>
+                <p class="result-line">Risultato: <strong id="dieResult">1</strong></p>
+                <p class="result-line">Evento A = "pari": <strong id="evenResult">non verificato</strong></p>
+              </div>
+            </div>
+            <div class="outcomes" id="dieOutcomes"></div>
+            <div class="formula-box">Ω = {1, 2, 3, 4, 5, 6} &nbsp; | &nbsp; A = {2, 4, 6}</div>
+          </div>
+        </div>
+
+        <div class="section-inner two-column compact">
+          <div class="panel">
+            <div class="panel-header">
+              <h3>Due monete</h3>
+              <button class="small-button" id="flipCoins">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4a8 8 0 0 0 0 16" /><path d="M17 4a8 8 0 0 1 0 16" /><path d="M7 12h10" /></svg>
+                Lancia
+              </button>
+            </div>
+            <div class="coin-row" id="coinRow">
+              <span>T</span>
+              <span>C</span>
+            </div>
+            <div class="outcomes four" id="coinOutcomes"></div>
+          </div>
+          <div>
+            <h3>Perché gli esiti sono quattro?</h3>
+            <p>
+              Ogni moneta ha due possibilità. Con due monete, le combinazioni sono 2 x 2:
+              TT, TC, CT, CC. L'evento "esattamente una Testa" contiene TC e CT.
+            </p>
+            <div class="formula-box">P(esattamente una T) = 2 / 4 = 1 / 2 = 50%</div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section warm-band" id="classica">
+        <div class="section-inner two-column">
+          <div>
+            <p class="eyebrow">2. Definizione classica</p>
+            <h2>Probabilità = casi favorevoli diviso casi totali</h2>
+            <p>
+              La definizione classica funziona quando gli esiti sono equiprobabili. Il risultato
+              deve sempre stare tra 0 e 1: 0 è impossibile, 1 è certo.
+            </p>
+            <div class="big-formula">P(E) = # favorevoli / # totali</div>
+          </div>
+          <div class="panel">
+            <div class="panel-header">
+              <h3>Calcolatore rapido</h3>
+              <span class="pill">equiprobabilità</span>
+            </div>
+            <div class="input-grid">
+              <label>Casi favorevoli <input id="favInput" type="number" min="0" value="3" /></label>
+              <label>Casi totali <input id="totalInput" type="number" min="1" value="6" /></label>
+            </div>
+            <output class="mega-output" id="classicOutput">3 / 6 = 50%</output>
+          </div>
+        </div>
+
+        <div class="section-inner two-column compact">
+          <div class="panel image-panel smartphone-panel">
+            <div class="phone-visual" aria-hidden="true">
+              <span></span><span></span><span></span>
+            </div>
+            <div>
+              <h3>Evento contrario: smartphone funzionante</h3>
+              <p>100 smartphone, 3 con schermo difettoso e 2 con batteria difettosa.</p>
+              <div class="formula-box">P(funzionante) = 1 - 5/100 = 0,95 = 95%</div>
+            </div>
+          </div>
+          <div class="panel">
+            <div class="panel-header">
+              <h3>Difetti nella scatola</h3>
+              <span class="pill" id="phonePill">95% ok</span>
+            </div>
+            <div class="input-grid">
+              <label>Schermo difettoso <input id="screenDefects" type="range" min="0" max="20" value="3" /></label>
+              <label>Batteria difettosa <input id="batteryDefects" type="range" min="0" max="20" value="2" /></label>
+            </div>
+            <div class="device-grid" id="deviceGrid" aria-label="100 smartphone simulati"></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section blue-band" id="operazioni">
+        <div class="section-inner two-column">
+          <div>
+            <p class="eyebrow">3. Operazioni tra eventi</p>
+            <h2>Unione, intersezione e compatibilità</h2>
+            <p>
+              L'unione A ∪ B si verifica quando accade almeno uno dei due eventi. L'intersezione
+              A ∩ B si verifica quando accadono insieme. Se l'intersezione è vuota, gli eventi sono
+              incompatibili.
+            </p>
+            <div class="big-formula">P(A ∪ B) = P(A) + P(B) - P(A ∩ B)</div>
+          </div>
+          <div class="panel">
+            <div class="panel-header">
+              <h3>Venn interattivo</h3>
+              <span class="pill" id="unionPill">32 / 52</span>
+            </div>
+            <div class="venn-wrap">
+              <div class="venn-circle circle-a"><span>A</span></div>
+              <div class="venn-circle circle-b"><span>B</span></div>
+              <div class="venn-overlap"><span>A ∩ B</span></div>
+            </div>
+            <div class="input-grid three">
+              <label>A <input id="vennA" type="number" min="0" value="26" /></label>
+              <label>B <input id="vennB" type="number" min="0" value="12" /></label>
+              <label>A ∩ B <input id="vennBoth" type="number" min="0" value="6" /></label>
+            </div>
+            <output class="result-card" id="vennOutput">26 + 12 - 6 = 32 casi favorevoli</output>
+          </div>
+        </div>
+
+        <div class="section-inner two-column compact">
+          <div class="panel image-panel">
+            <img src="assets/cards.jpg" alt="Mazzo completo di carte francesi" />
+            <div>
+              <h3>Carte francesi</h3>
+              <p>Carte rosse: 26. Figure: 12. Figure rosse: 6.</p>
+              <div class="formula-box">P(rossa ∪ figura) = 26/52 + 12/52 - 6/52 = 32/52</div>
+            </div>
+          </div>
+          <div class="panel">
+            <div class="panel-header">
+              <h3>Urna 1-20</h3>
+              <span class="pill">multipli di 3 o 4</span>
+            </div>
+            <div class="ball-grid" id="ballGrid"></div>
+            <div class="formula-box">6/20 + 5/20 - 1/20 = 10/20 = 50%</div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section mint-band" id="differenza">
+        <div class="section-inner two-column">
+          <div>
+            <p class="eyebrow">4. Differenza insiemistica</p>
+            <h2>"Solo A" significa togliere la parte in comune</h2>
+            <p>
+              Quando devi calcolare un evento esclusivo, sottrai l'intersezione. È lo stesso
+              ragionamento usato per "solo mare", "solo TikTok" o qualunque scelta non condivisa.
+            </p>
+            <div class="big-formula">P(A - B) = P(A) - P(A ∩ B)</div>
+          </div>
+          <div class="panel">
+            <div class="panel-header">
+              <h3>Sondaggio vacanze</h3>
+              <span class="pill">mare / montagna</span>
+            </div>
+            <div class="stacked-bars" aria-label="Ripartizione vacanze">
+              <span style="--w: 40%" class="sea">solo mare 40%</span>
+              <span style="--w: 5%" class="both">entrambe 5%</span>
+              <span style="--w: 22%" class="mountain">solo montagna 22%</span>
+              <span style="--w: 33%" class="none">nessuna 33%</span>
+            </div>
+            <div class="formula-box">Solo mare = 45% - 5% = 40%</div>
+          </div>
+        </div>
+
+        <div class="section-inner two-column compact">
+          <div class="panel">
+            <div class="panel-header">
+              <h3>Social network</h3>
+              <span class="pill">classe da 100</span>
+            </div>
+            <div class="social-matrix">
+              <div><strong>80</strong><span>Instagram</span></div>
+              <div><strong>60</strong><span>TikTok</span></div>
+              <div><strong>50</strong><span>Entrambi</span></div>
+              <div><strong>10</strong><span>Solo TikTok</span></div>
+            </div>
+          </div>
+          <div>
+            <h3>Risultato da dire bene</h3>
+            <p>
+              Non basta guardare chi usa TikTok: dentro quei 60 ci sono anche i 50 che usano
+              entrambi. Quindi esclusivamente TikTok e 60 - 50 = 10 studenti.
+            </p>
+            <div class="formula-box">P(T - I) = 60/100 - 50/100 = 10%</div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section violet-band" id="condizionata">
+        <div class="section-inner two-column">
+          <div>
+            <p class="eyebrow">5. Probabilità condizionata</p>
+            <h2>Quando arriva una nuova informazione, cambia l'universo</h2>
+            <p>
+              P(A | B) legge "probabilità di A sapendo che B è avvenuto". L'insieme di riferimento
+              non è più tutto Ω: diventa B.
+            </p>
+            <div class="big-formula">P(A | B) = P(A ∩ B) / P(B)</div>
+          </div>
+          <div class="panel">
+            <div class="panel-header">
+              <h3>Alunni della 4aB</h3>
+              <span class="pill" id="studentPill">13 / 24</span>
+            </div>
+            <div class="input-grid two">
+              <label>Alunni istituto <input id="schoolTotal" type="number" min="1" value="650" /></label>
+              <label>Maschi istituto <input id="schoolMales" type="number" min="0" value="225" /></label>
+              <label>Alunni 4aB <input id="classTotal" type="number" min="1" value="24" /></label>
+              <label>Maschi 4aB <input id="classMales" type="number" min="0" value="13" /></label>
+            </div>
+            <output class="mega-output" id="studentOutput">P(M | 4aB) = 13 / 24 = 54,17%</output>
+          </div>
+        </div>
+
+        <div class="section-inner two-column compact">
+          <div class="panel">
+            <div class="panel-header">
+              <h3>Indipendenza</h3>
+              <button class="small-button" id="rollTwoDice">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 5h6v6H5z" /><path d="M13 13h6v6h-6z" /></svg>
+                Lancia
+              </button>
+            </div>
+            <div class="two-dice">
+              <div class="die-face small" id="dieOne"></div>
+              <div class="die-face small" id="dieTwo"></div>
+            </div>
+            <p class="result-line">Doppio 6: <strong id="doubleSix">prova a lanciare</strong></p>
+            <div class="formula-box">P(6 rosso ∩ 6 blu) = 1/6 x 1/6 = 1/36</div>
+          </div>
+          <div>
+            <h3>Dipendenza</h3>
+            <p>
+              Se estrai due carte senza reinserirle, la seconda probabilità cambia: dopo il primo
+              Asso restano 3 Assi su 51 carte.
+            </p>
+            <div class="formula-box">P(due Assi) = 4/52 x 3/51 = 12/2652</div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section coral-band" id="bayes">
+        <div class="section-inner two-column">
+          <div>
+            <p class="eyebrow">6. Bayes e probabilità totale</p>
+            <h2>Bayes risponde al contrario: dalla prova alla causa</h2>
+            <p>
+              Se osservi un effetto, Bayes calcola quanto è probabile una causa. Il trucco è
+              confrontare il ramo che ti interessa con tutti i modi in cui quell'effetto può apparire.
+            </p>
+            <div class="big-formula">P(C | E) = P(C) P(E | C) / P(E)</div>
+          </div>
+          <div class="panel">
+            <div class="panel-header">
+              <h3>Test anti-doping</h3>
+              <span class="pill" id="bayesPill">26,87%</span>
+            </div>
+            <div class="slider-list">
+              <label>Prevalenza doping <input id="prevalence" type="range" min="1" max="30" value="2" /> <span id="prevalenceLabel">2%</span></label>
+              <label>Sensibilita test <input id="sensitivity" type="range" min="50" max="100" value="90" /> <span id="sensitivityLabel">90%</span></label>
+              <label>Falsi positivi <input id="falsePositive" type="range" min="1" max="30" value="5" /> <span id="falsePositiveLabel">5%</span></label>
+            </div>
+            <div class="bayes-bars">
+              <div><span id="truePositiveBar"></span><b>veri positivi</b></div>
+              <div><span id="falsePositiveBar"></span><b>falsi positivi</b></div>
+            </div>
+            <output class="mega-output" id="bayesOutput">P(dopato | positivo) = 26,87%</output>
+          </div>
+        </div>
+
+        <div class="section-inner path-row">
+          <article>
+            <span>1</span>
+            <strong>Probabilità totale</strong>
+            <p>P(E) = P(E | C1)P(C1) + ... + P(E | Cn)P(Cn)</p>
+          </article>
+          <article>
+            <span>2</span>
+            <strong>Ramo osservato</strong>
+            <p>Numeratore = probabilità della causa x probabilità dell'effetto dato quella causa.</p>
+          </article>
+          <article>
+            <span>3</span>
+            <strong>Risposta a posteriori</strong>
+            <p>Il risultato può sorprendere quando la causa iniziale è rara.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section amber-band" id="bernoulli">
+        <div class="section-inner two-column">
+          <div>
+            <p class="eyebrow">7. Prove ripetute</p>
+            <h2>Bernoulli calcola esattamente k successi su n prove</h2>
+            <p>
+              Ogni prova deve essere indipendente e la probabilità di successo deve restare fissa.
+              Il coefficiente binomiale conta in quanti modi possono posizionarsi i successi.
+            </p>
+            <div class="big-formula">P(X = k) = C(n, k) p<sup>k</sup>(1 - p)<sup>n-k</sup></div>
+          </div>
+          <div class="panel">
+            <div class="panel-header">
+              <h3>Tiri liberi</h3>
+              <span class="pill" id="bernoulliPill">20,48%</span>
+            </div>
+            <div class="slider-list">
+              <label>n prove <input id="bernN" type="range" min="1" max="12" value="5" /> <span id="bernNLabel">5</span></label>
+              <label>k successi <input id="bernK" type="range" min="0" max="5" value="3" /> <span id="bernKLabel">3</span></label>
+              <label>p successo <input id="bernP" type="range" min="5" max="95" value="80" /> <span id="bernPLabel">80%</span></label>
+            </div>
+            <output class="mega-output" id="bernoulliOutput">C(5,3) x 0,8^3 x 0,2^2 = 20,48%</output>
+            <div class="chart" id="bernChart" aria-label="Distribuzione binomiale"></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section quiz-band" id="quiz">
+        <div class="section-inner quiz-layout">
+          <div>
+            <p class="eyebrow">Finale</p>
+            <h2>Quiz da presentazione</h2>
+            <p>
+              Domande veloci, feedback immediato e punteggio. Ottimo per chiudere spiegando che non
+              hai solo memorizzato le formule: le sai usare.
+            </p>
+            <div class="quiz-score">
+              <span id="scoreText">Punteggio: 0 / 0</span>
+              <button class="small-button" id="resetQuiz">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 12a8 8 0 1 1-2.34-5.66" /><path d="M20 4v6h-6" /></svg>
+                Reset
+              </button>
+            </div>
+          </div>
+          <div class="quiz-panel" id="quizPanel" aria-live="polite"></div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <span>Realizzato da Yapa, Piccoli, Diaco e Sanchez</span>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>
