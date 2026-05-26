@@ -518,38 +518,143 @@ li {
   color: var(--ink);
 }
 
+.book-example {
+  background: #fffdf3;
+}
+
+.book-heading {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  margin-bottom: 0.8rem;
+}
+
+.book-heading > span {
+  display: grid;
+  width: 1.9rem;
+  height: 1.9rem;
+  place-items: center;
+  border-radius: 4px;
+  background: var(--coral);
+  color: #ffffff;
+  font-weight: 1000;
+}
+
+.book-heading h3 {
+  margin: 0;
+}
+
+.book-table-layout {
+  display: grid;
+  grid-template-columns: minmax(8rem, 0.5fr) minmax(0, 1fr);
+  gap: 1rem;
+  align-items: start;
+}
+
+.book-note {
+  display: grid;
+  gap: 0.45rem;
+  padding: 0.85rem;
+  border: 1px solid #d8d1aa;
+  border-radius: var(--radius);
+  background: #fff7cd;
+}
+
+.book-note strong {
+  color: var(--ink);
+  font-size: 1.45rem;
+  line-height: 1;
+}
+
+.book-note span {
+  color: var(--muted);
+  font-size: 0.9rem;
+  font-weight: 800;
+  line-height: 1.35;
+}
+
 .stat-table-wrap {
   width: 100%;
   overflow-x: auto;
+  border: 2px solid #8fb9aa;
+  border-radius: var(--radius);
+  background: #ffffff;
 }
 
 .stat-table {
   width: 100%;
   min-width: 430px;
   border-collapse: collapse;
-  overflow: hidden;
-  border-radius: var(--radius);
   background: #ffffff;
-  font-size: 0.94rem;
+  font-size: 0.92rem;
 }
 
 .stat-table th,
 .stat-table td {
-  padding: 0.65rem 0.75rem;
-  border: 1px solid var(--line);
+  padding: 0.62rem 0.7rem;
+  border: 1px solid #b7d0c7;
   text-align: left;
+  vertical-align: middle;
 }
 
-.stat-table th,
-.stat-table tfoot td {
-  background: #eef6f2;
+.stat-table th {
+  background: #d8ede6;
   color: var(--ink);
-  font-weight: 900;
+  font-size: 0.78rem;
+  font-weight: 1000;
+  line-height: 1.15;
+  text-transform: uppercase;
+}
+
+.stat-table tbody tr:nth-child(even) td {
+  background: #f5fbf8;
+}
+
+.stat-table tfoot td {
+  background: #d8ede6;
+  color: var(--ink);
+  font-weight: 1000;
 }
 
 .stat-table td:nth-child(2),
 .stat-table td:nth-child(3) {
+  font-weight: 900;
+}
+
+.color-dot {
+  display: inline-block;
+  width: 0.72rem;
+  height: 0.72rem;
+  margin-right: 0.45rem;
+  border-radius: 50%;
+  vertical-align: -0.05rem;
+}
+
+.color-dot.red { background: #c95343; }
+.color-dot.yellow { background: #d6a63c; }
+.color-dot.black { background: #172021; }
+.color-dot.green { background: #1f8f72; }
+
+.book-formula {
+  display: grid;
+  gap: 0.35rem;
+  margin-top: 1rem;
+  padding: 0.9rem;
+  border-left: 5px solid var(--blue);
+  border-radius: var(--radius);
+  background: #eef6ff;
+}
+
+.book-formula strong {
+  color: var(--ink);
+  font-size: 1.25rem;
+}
+
+.book-formula span {
+  color: var(--muted);
+  font-size: 0.92rem;
   font-weight: 800;
+  line-height: 1.4;
 }
 
 .result-card,
@@ -1257,6 +1362,10 @@ body.presentation .topbar {
     height: 210px;
     transform: scale(0.86);
     transform-origin: center;
+  }
+
+  .book-table-layout {
+    grid-template-columns: 1fr;
   }
 
   .slider-list label,
