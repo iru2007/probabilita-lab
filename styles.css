@@ -237,8 +237,16 @@ svg path {
   background: var(--warm-soft);
 }
 
+.olive-band {
+  background: #f1f6e8;
+}
+
 .blue-band {
   background: var(--blue-soft);
+}
+
+.axioms-band {
+  background: #f7f0ea;
 }
 
 .mint-band {
@@ -480,6 +488,34 @@ li {
   background: rgba(23, 32, 33, 0.06);
   color: var(--ink);
   line-height: 1.4;
+}
+
+.formula-lines,
+.mini-list,
+.quality-grid {
+  display: grid;
+  gap: 0.7rem;
+}
+
+.formula-lines span,
+.mini-list span {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.mini-list {
+  margin-top: 1rem;
+}
+
+.mini-list span {
+  padding-top: 0.7rem;
+  border-top: 1px solid rgba(23, 32, 33, 0.12);
+  color: var(--muted);
+  line-height: 1.45;
+}
+
+.mini-list b {
+  color: var(--ink);
 }
 
 .result-card,
@@ -814,6 +850,29 @@ input[type="range"] {
   font-weight: 800;
 }
 
+.quality-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.quality-grid div {
+  min-height: 6rem;
+  padding: 1rem;
+  border-radius: var(--radius);
+  background: #f7faf9;
+}
+
+.quality-grid strong {
+  display: block;
+  margin-bottom: 0.45rem;
+  color: var(--blue);
+}
+
+.quality-grid span {
+  color: var(--muted);
+  font-weight: 800;
+  line-height: 1.4;
+}
+
 .slider-list {
   display: grid;
   gap: 1rem;
@@ -1132,6 +1191,7 @@ body.presentation .topbar {
   .input-grid,
   .input-grid.two,
   .input-grid.three,
+  .quality-grid,
   .social-matrix {
     grid-template-columns: 1fr;
   }
