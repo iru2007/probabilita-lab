@@ -518,6 +518,40 @@ li {
   color: var(--ink);
 }
 
+.stat-table-wrap {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.stat-table {
+  width: 100%;
+  min-width: 430px;
+  border-collapse: collapse;
+  overflow: hidden;
+  border-radius: var(--radius);
+  background: #ffffff;
+  font-size: 0.94rem;
+}
+
+.stat-table th,
+.stat-table td {
+  padding: 0.65rem 0.75rem;
+  border: 1px solid var(--line);
+  text-align: left;
+}
+
+.stat-table th,
+.stat-table tfoot td {
+  background: #eef6f2;
+  color: var(--ink);
+  font-weight: 900;
+}
+
+.stat-table td:nth-child(2),
+.stat-table td:nth-child(3) {
+  font-weight: 800;
+}
+
 .result-card,
 .mega-output {
   margin-top: 1rem;
