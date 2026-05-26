@@ -172,16 +172,15 @@ function setupSmartphones() {
   }
 
   const updatePhones = () => {
-    const screen = numberValue("#screenDefects");
     const battery = numberValue("#batteryDefects");
-    const defects = clamp(screen + battery, 0, 100);
+    const defects = clamp(battery, 0, 100);
     $$("#deviceGrid span").forEach((item, index) => {
       item.classList.toggle("defect", index < defects);
     });
     $("#phonePill").textContent = `${pct((100 - defects) / 100)} ok`;
   };
 
-  ["#screenDefects", "#batteryDefects"].forEach((selector) => $(selector).addEventListener("input", updatePhones));
+  $("#batteryDefects").addEventListener("input", updatePhones);
   updatePhones();
 }
 
